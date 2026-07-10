@@ -1,9 +1,18 @@
 # Terraform
-.terraform/
 *.tfstate
 *.tfstate.*
+.terraform/
+crash.log
+
+# Terraform Variables
 *.tfvars
-.terraform.lock.hcl
+!terraform/**/*.example.tfvars
+
+# Kubernetes
+*.kubeconfig
+
+# Helm
+*.tgz
 
 # IDE
 .vscode/
@@ -12,18 +21,14 @@
 # macOS
 .DS_Store
 
-# Python
-__pycache__/
-*.pyc
-
 # Logs
 *.log
 
-# Environment
+# Environment Variables
 .env
 
-# Kubernetes
-kubeconfig
+# Python
+__pycache__/
 
-# Misc
-*.bak
+# Node
+node_modules/

@@ -1,0 +1,17 @@
+apiVersion: v2
+
+name: online-boutique
+
+description: AWS Cloud Platform Capstone
+
+type: application
+
+version: 0.1.0
+
+appVersion: "1.0"
+
+dependencies:
+
+  - name: boutique
+    version: "0.8.0"
+    repository: "oci://us-docker.pkg.dev/google-samples/microservices-demo/charts"

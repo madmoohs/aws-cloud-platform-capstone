@@ -1,0 +1,11 @@
+replicaCount: 3
+
+global:
+
+  platform: aws
+
+frontend:
+
+  service:
+
+    type: ClusterIP
