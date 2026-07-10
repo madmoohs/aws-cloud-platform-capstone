@@ -1,10 +1,10 @@
 name: CI Pipeline
 
 on:
+  push:
+    branches: ['*']
   pull_request:
     branches: [main, develop]
-  push:
-    branches: [develop]
 
 jobs:
   terraform-validate:
@@ -70,6 +70,19 @@ jobs:
           format: table
           exit-code: 1
           severity: HIGH,CRITICAL
+
+  snyk:
+    name: Snyk Security
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Run Snyk
+        uses: snyk/actions/node@master
+        env:
+          SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
+        with:
+          args: --severity-threshold=high
+        continue-on-error: true
 
   docker-validate:
     name: Docker Build Validate
