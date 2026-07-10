@@ -1,0 +1,50 @@
+adminPassword: prom-operator
+
+persistence:
+  enabled: true
+  size: 5Gi
+
+service:
+  type: ClusterIP
+
+datasources:
+  datasources.yaml:
+    apiVersion: 1
+    datasources:
+      - name: Prometheus
+        type: prometheus
+        url: http://prometheus-server.monitoring.svc.cluster.local:80
+        access: proxy
+        isDefault: true
+      - name: Loki
+        type: loki
+        url: http://loki.monitoring.svc.cluster.local:3100
+        access: proxy
+
+dashboardProviders:
+  dashboardproviders.yaml:
+    apiVersion: 1
+    providers:
+      - name: default
+        orgId: 1
+        folder: ""
+        type: file
+        disableDeletion: false
+        editable: true
+        options:
+          path: /var/lib/grafana/dashboards/default
+
+dashboards:
+  default:
+    kubernetes-cluster:
+      gnetId: 1621
+      revision: 1
+      datasource: Prometheus
+    kubernetes-nodes:
+      gnetId: 16098
+      revision: 1
+      datasource: Prometheus
+    kubernetes-pods:
+      gnetId: 15772
+      revision: 1
+      datasource: Prometheus

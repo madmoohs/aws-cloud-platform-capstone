@@ -1,0 +1,27 @@
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRole
+metadata:
+  name: online-boutique-reader
+rules:
+  - apiGroups: [""]
+    resources: ["pods", "services", "configmaps", "secrets", "endpoints"]
+    verbs: ["get", "list", "watch"]
+  - apiGroups: ["apps"]
+    resources: ["deployments", "statefulsets", "replicasets"]
+    verbs: ["get", "list", "watch"]
+  - apiGroups: ["networking.k8s.io"]
+    resources: ["ingresses"]
+    verbs: ["get", "list", "watch"]
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRoleBinding
+metadata:
+  name: online-boutique-reader-binding
+subjects:
+  - kind: ServiceAccount
+    name: default
+    namespace: online-boutique
+roleRef:
+  kind: ClusterRole
+  name: online-boutique-reader
+  apiGroup: rbac.authorization.k8s.io

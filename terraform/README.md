@@ -1,21 +1,52 @@
-# Terraform Infrastructure
+# Terraform
 
-This directory provisions all AWS infrastructure required by the project.
+Infrastructure as Code for the AWS Cloud Platform.
 
-## Modules
+## Structure
 
-- Networking
-- IAM
-- Amazon EKS
+```
+terraform/
+├── bootstrap/          # S3 backend & DynamoDB lock table
+├── modules/
+│   └── cluster/        # Reusable VPC + EKS + ALB IAM module
+└── live/
+    ├── dev/            # Development environment
+    ├── staging/        # Staging environment
+    └── prod/           # Production environment
+```
 
-Terraform provisions AWS resources only.
+## Resources Provisioned
 
-Kubernetes resources are managed separately using Kubernetes manifests, Helm, and ArgoCD.
+- **VPC** with public/private subnets, Internet Gateway, NAT Gateway, Route Tables
+- **EKS Cluster** with managed node groups, IRSA, cluster logging
+- **IAM Roles** for EKS, node groups, and ALB Controller
+- **OIDC Provider** for IRSA
+- **EKS Addons**: CoreDNS, kube-proxy, vpc-cni, eks-pod-identity-agent
+- **S3 Backend** for Terraform state
+- **DynamoDB** for state locking
 
-## Environments
+## Deployment Order
 
-- Development
-- Staging
-- Production
+### 1. Bootstrap
 
-Each environment consumes the same reusable Terraform modules.
+```bash
+cd terraform/bootstrap
+terraform init
+terraform apply
+```
+
+### 2. Environment
+
+```bash
+cd terraform/live/dev
+terraform init
+terraform plan
+terraform apply
+```
+
+## Interview Talking Points
+
+- **Why modules?** Reusability across dev/staging/prod with consistent configuration
+- **Why S3 + DynamoDB?** Remote state with locking prevents corruption and enables team collaboration
+- **Why IRSA?** Fine-grained IAM permissions for Kubernetes pods without static credentials
+- **Why managed node groups?** AWS handles patching, scaling, and health checks

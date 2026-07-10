@@ -1,0 +1,27 @@
+config:
+  lokiAddress: http://loki.monitoring.svc.cluster.local:3100
+
+  snippets:
+    scrapeConfigs: |
+      - job_name: kubernetes-pods
+        kubernetes_sd_configs:
+          - role: pod
+        relabel_configs:
+          - source_labels: [__meta_kubernetes_pod_annotation_kubernetes_io_log]
+            action: keep
+            regex: true
+          - source_labels: [__meta_kubernetes_pod_label_app]
+            action: replace
+            target_label: app
+          - source_labels: [__meta_kubernetes_namespace]
+            action: replace
+            target_label: namespace
+          - source_labels: [__meta_kubernetes_pod_name]
+            action: replace
+            target_label: pod
+      - job_name: kubernetes-system
+        static_configs:
+          - targets: [localhost]
+            labels:
+              job: varlogs
+              __path__: /var/log/*.log
