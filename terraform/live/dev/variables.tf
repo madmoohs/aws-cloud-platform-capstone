@@ -1,3 +1,8 @@
+variable "project_name" {
+  type    = string
+  default = "aws-cloud-platform-capstone"
+}
+
 variable "aws_region" {
   type    = string
   default = "ap-southeast-1"

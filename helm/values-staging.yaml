@@ -1,11 +1,17 @@
 replicaCount: 2
 
 global:
-
   platform: aws
+  environment: staging
 
 frontend:
-
   service:
-
     type: ClusterIP
+
+resources:
+  limits:
+    cpu: 1
+    memory: 1Gi
+  requests:
+    cpu: 500m
+    memory: 512Mi

@@ -1,11 +1,17 @@
 replicaCount: 3
 
 global:
-
   platform: aws
+  environment: prod
 
 frontend:
-
   service:
-
     type: ClusterIP
+
+resources:
+  limits:
+    cpu: 2
+    memory: 2Gi
+  requests:
+    cpu: 1
+    memory: 1Gi
