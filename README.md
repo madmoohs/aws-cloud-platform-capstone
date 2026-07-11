@@ -174,9 +174,4 @@ Developer → Push → GitHub Actions → TFLint → Checkov → Trivy → Snyk 
 
 This project has been successfully deployed to AWS EKS. See [docs/DEPLOYMENT_STATUS.md](docs/DEPLOYMENT_STATUS.md) for current deployment details.
 
-**Quick Access:**
-- Application: http://online-boutique.local
-- ArgoCD UI: https://a2239b725eec040f8aa88e644b2aea29-555169297.ap-southeast-1.elb.amazonaws.com
-- Grafana: http://a336db00d80d845498403964225c6644-1612809529.ap-southeast-1.elb.amazonaws.com
-
 **GitHub Actions CI Status:** All jobs passing ✅ (TFLint, Checkov, Trivy, Snyk, Helm Lint, YAML Validation)
