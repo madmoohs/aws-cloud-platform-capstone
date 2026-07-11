@@ -18,7 +18,7 @@
 | ingress-nginx | nginx Ingress Controller | Running | 2 pods |
 | kube-system | EKS Addons (VPC CNI, CoreDNS, kube-proxy) | Running | 4 pods |
 
-### Access URLs
+### Services
 
 | Service | Status |
 |---------|-----|
