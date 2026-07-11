@@ -63,12 +63,12 @@ module "eks" {
   enable_irsa                              = true
   enable_cluster_creator_admin_permissions = true
 
-  cluster_enabled_log_types = [
+  enabled_log_types = [
     "api",
     "audit",
     "authenticator",
     "controllerManager",
-    "scheduler"
+    "scheduler",
   ]
 
   addons = {
@@ -87,22 +87,18 @@ module "eks" {
     }
   }
 
-  eks_managed_node_group_defaults = {
-    ami_type       = "AL2023_x86_64_STANDARD"
-    instance_types = var.node_instance_types
-    disk_size      = 50
-    update_config = {
-      max_unavailable_percentage = 50
-    }
-  }
-
   eks_managed_node_groups = {
     default = {
-      name          = "default"
-      min_size      = var.node_min_size
-      max_size      = var.node_max_size
-      desired_size  = var.node_desired_size
-      capacity_type = "ON_DEMAND"
+      ami_type       = "AL2023_x86_64_STANDARD"
+      instance_types = var.node_instance_types
+      disk_size      = 50
+      min_size       = var.node_min_size
+      max_size       = var.node_max_size
+      desired_size   = var.node_desired_size
+      capacity_type  = "ON_DEMAND"
+      update_config = {
+        max_unavailable_percentage = 50
+      }
       labels = {
         Environment = var.environment
       }
