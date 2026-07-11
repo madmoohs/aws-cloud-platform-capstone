@@ -20,11 +20,11 @@
 
 ### Access URLs
 
-| Service | URL | Credentials |
-|---------|-----|-------------|
-| Online Boutique | http://online-boutique.local via `a207584c0cc54431f887787b6e3ca202-283885375.ap-southeast-1.elb.amazonaws.com` | None |
-| ArgoCD UI | https://a2239b725eec040f8aa88e644b2aea29-555169297.ap-southeast-1.elb.amazonaws.com | admin / B-LyLb0W0UnEXz8h |
-| Grafana | http://a336db00d80d845498403964225c6644-1612809529.ap-southeast-1.elb.amazonaws.com | admin / admin |
+| Service | Status |
+|---------|-----|
+| Online Boutique | Success |
+| ArgoCD UI | Success |
+| Grafana | Success |
 
 ### CI/CD Pipeline Status
 
