@@ -27,6 +27,9 @@ crash.log
 # Environment Variables
 .env
 
+# Kubernetes Secrets (contains sensitive data)
+**/grafana-secret.yaml
+
 # Python
 __pycache__/
 

@@ -155,6 +155,15 @@ Developer → Push → GitHub Actions → TFLint → Checkov → Trivy → Snyk 
 - **Loki**: Log aggregation
 - **Promtail**: Log shipping from pods
 
+## Security Best Practices
+
+- Network policies for microservices communication
+- Pod disruption budgets for high availability
+- Resource quotas and limits
+- Externalized secrets management
+- Comprehensive security scanning in CI/CD
+- See [docs/SECURITY.md](docs/SECURITY.md) for detailed security configuration
+
 ## Key Features
 
 - ✅ Infrastructure as Code (Terraform)

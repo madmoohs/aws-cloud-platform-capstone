@@ -7,6 +7,22 @@ global:
 frontend:
   service:
     type: ClusterIP
+  livenessProbe:
+    httpGet:
+      path: /healthz
+      port: 8080
+    initialDelaySeconds: 30
+    periodSeconds: 10
+  readinessProbe:
+    httpGet:
+      path: /readyz
+      port: 8080
+    initialDelaySeconds: 5
+    periodSeconds: 5
+
+podDisruptionBudget:
+  enabled: true
+  minAvailable: 1
 
 resources:
   limits:
@@ -15,3 +31,7 @@ resources:
   requests:
     cpu: 500m
     memory: 512Mi
+
+networkPolicy:
+  enabled: true
+  allowExternal: true

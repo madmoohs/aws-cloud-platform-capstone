@@ -1,4 +1,6 @@
-adminPassword: prom-operator
+admin:
+  existingSecret: grafana-admin-credentials
+  passwordKey: admin-password
 
 persistence:
   enabled: true
